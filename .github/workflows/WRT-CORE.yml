@@ -62,7 +62,9 @@ env:
 jobs:
   core:
     name: ${{inputs.WRT_SOURCE}}
-    runs-on: ubuntu-latest
+    # 固定 Ubuntu 24.04 (代号 noble): init_build_environment.sh 按代号白名单校验,
+    # ubuntu-latest 已指向 26.04 导致 "Unsupported OS" 报错, 必须锁定受支持版本
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Projects
         uses: actions/checkout@main
